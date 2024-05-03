@@ -1,4 +1,3 @@
-/* eslint-disable no-duplicate-case */
 import { ActionType } from './action';
 
 const threadDetailReducer = (threadDetail = null, action = {}) => {

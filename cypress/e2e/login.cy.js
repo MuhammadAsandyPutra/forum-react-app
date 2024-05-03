@@ -7,32 +7,29 @@
  *   - should display homepage when username and password are correct
  */
 
-
 describe('Login spec', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5173/');
-  })
-
+  });
 
   it('should display login page correctly', () => {
-    //verifikasi element
+    // verifikasi element
     cy.get('input[placeholder="Email"]').should('be.visible');
     cy.get('input[placeholder="Password"]').should('be.visible');
     cy.get('button').contains(/^Login$/).should('be.visible');
   });
 
   it('should display alert when Email is empty', () => {
-    //klik login tanpa username
+    // klik login tanpa username
     cy.get('button').contains(/^Login$/).click();
 
     cy.on('window:alert', (str) => {
       expect(str).to.equal('"email" is not allowed to be empty');
     });
-
   });
 
   it('should display alert when password is empty', () => {
-    cy.get('input[placeholder="Email"]').type("testasandy@gmail.com");
+    cy.get('input[placeholder="Email"]').type('testasandy@gmail.com');
 
     cy.get('button').contains(/^Login$/).click();
 
@@ -49,9 +46,9 @@ describe('Login spec', () => {
     cy.get('button').contains(/^Login$/).click();
 
     cy.on('window:alert', (str) => {
-      expect(str).to.equal("email or password is wrong");
-    })
-  })
+      expect(str).to.equal('email or password is wrong');
+    });
+  });
 
   it('should display homepage when email and password are correct', () => {
     cy.get('input[placeholder="Email"]').type('testasandy@gmail.com');
@@ -62,5 +59,5 @@ describe('Login spec', () => {
 
     cy.get('nav').contains(/^Thread$/).should('be.visible');
     cy.get('button').contains('Log out').should('be.visible');
-  })
+  });
 });

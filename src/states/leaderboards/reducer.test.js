@@ -7,19 +7,19 @@
 
 */
 
-import {describe, it, expect} from 'vitest';
+import { describe, it, expect } from 'vitest';
 import leaderboardsReducer from './reducer';
 
 describe('leaderboardsReducer', () => {
-    it('should return the initial state when given by UNKNOWN action',() => {
-        //Arrange
-        const initialState = [];
-        const action = {type : 'UNKNOWN'}
+  it('should return the initial state when given by UNKNOWN action', () => {
+    // Arrange
+    const initialState = [];
+    const action = { type: 'UNKNOWN' };
 
-        //Action
-        const nextState = leaderboardsReducer(initialState, action);
+    // Action
+    const nextState = leaderboardsReducer(initialState, action);
 
-        //Assert
-        expect(nextState).toEqual(initialState);
-    });
+    // Assert
+    expect(nextState).toEqual(initialState);
+  });
 });

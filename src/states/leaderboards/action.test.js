@@ -6,45 +6,45 @@
  *  - should dispatch action and call alert correctly when data fetching failed
  */
 
-import {describe, beforeEach, afterEach, expect, it, vi} from 'vitest';
-import api from '../../utils/api';
+import {
+  describe, beforeEach, afterEach, expect, it, vi,
+} from 'vitest';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
-import { asyncGetLeaderboards } from './action';
-import { receiveLeaderboardsActionCreator } from './action';
-
+import api from '../../utils/api';
+import { asyncGetLeaderboards, receiveLeaderboardsActionCreator } from './action';
 
 const fakeLeaderboardResponse = [
-    {
-        id: "users-123",
-        name: "Asandy",
-        email: "asandy@gmail.com",
-        avatar: "https://generated-image-url.jpg"
-    },
+  {
+    id: 'users-123',
+    name: 'Asandy',
+    email: 'asandy@gmail.com',
+    avatar: 'https://generated-image-url.jpg',
+  },
 ];
 
 describe('asyncGetLeaderboards', () => {
-    beforeEach(() => {
-        api._getLeaderboard = api.getLeaderboard;
-    });
+  beforeEach(() => {
+    api._getLeaderboard = api.getLeaderboard;
+  });
 
-    afterEach(() => {
-        api.getLeaderboard = api._getLeaderboard;
+  afterEach(() => {
+    api.getLeaderboard = api._getLeaderboard;
 
-        //delete backup data
-        delete api._getLeaderboard;
-    });
+    // delete backup data
+    delete api._getLeaderboard;
+  });
 
-    it('should dispatch action correctly when data fetching success', async () => {
-        //Arrange
-        api.getLeaderboard = () => Promise.resolve(fakeLeaderboardResponse);
+  it('should dispatch action correctly when data fetching success', async () => {
+    // Arrange
+    api.getLeaderboard = () => Promise.resolve(fakeLeaderboardResponse);
 
-        const dispatch = vi.fn();
-        //Action
-        await asyncGetLeaderboards()(dispatch);
+    const dispatch = vi.fn();
+    // Action
+    await asyncGetLeaderboards()(dispatch);
 
-        //Assert
-        expect(dispatch).toHaveBeenCalledWith(showLoading());
-        expect(dispatch).toHaveBeenCalledWith(receiveLeaderboardsActionCreator(fakeLeaderboardResponse));
-        expect(dispatch).toHaveBeenCalledWith(hideLoading());
-    });
-})
+    // Assert
+    expect(dispatch).toHaveBeenCalledWith(showLoading());
+    expect(dispatch).toHaveBeenCalledWith(receiveLeaderboardsActionCreator(fakeLeaderboardResponse));
+    expect(dispatch).toHaveBeenCalledWith(hideLoading());
+  });
+});
