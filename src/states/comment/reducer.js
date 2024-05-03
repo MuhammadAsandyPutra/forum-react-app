@@ -1,4 +1,3 @@
-/* eslint-disable default-case */
 import { ActionType } from './action';
 
 const commentReducer = (contents = [], action = {}) => {
