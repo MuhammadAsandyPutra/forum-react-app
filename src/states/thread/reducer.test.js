@@ -5,7 +5,7 @@
 *  - should return the initial state when given by unknown action
 *  - should return the thread when given by RECEIVE_THREADS action
 *  - should return the thread with the new thread when given by ADD_THREAD action
-*  - should return the thread with the toggled like thread when given by TOGGLE_UPVOTE_THREAD action
+*  - should return the thread with the toggled like thread when given by TOGGLE_UPVOTE_THREAD and TOGGLE_DOWNVOTE_THREAD action
 *
 */
 
@@ -25,7 +25,7 @@ describe('threadReducer function', () => {
     expect(nextState).toEqual(initialState);
   });
 
-  it('should return the thread with the new thread when given by ADD_THREAD action', () => {
+  it('should return the thread when given by RECEIVE_THREADS action', () => {
     // Arrange
     const initialState = [];
     const action = {
@@ -104,7 +104,7 @@ describe('threadReducer function', () => {
     expect(nextState).toEqual([action.payload.thread, ...initialState]);
   });
 
-  it('should return the thread with the toggled like thread when given by TOGGLE_UPVOTE_THREAD action', () => {
+  it('should return the thread with the toggled like thread when given by TOGGLE_UPVOTE_THREAD AND TOGGLE_DOWNVOTE_THREAD action', () => {
     // Arrange
     const initialState = [
       {
