@@ -25,7 +25,7 @@ const LoginPage = () => {
           ,
           {' '}
           <br />
-          Through Forum Apps.
+          Through Forum App's.
         </h2>
         <LoginInput login={onLogin} />
         <p className="text-gray-700">
